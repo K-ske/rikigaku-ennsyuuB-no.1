@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>力学演習B 第1回(復習) 問題と解説</title>
+<style>
+:root{--ink:#1c2430;--mute:#586474;--blue:#1d5fd1;--green:#0c7a54;--red:#c0392b;--amber:#9a5b00;}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;
+  font-size:16px;line-height:1.9}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px 80px}
+header{padding:56px 0 8px}
+header h1{margin:0;font-size:clamp(26px,5vw,36px);line-height:1.4}
+header p{margin:10px 0 0;color:var(--mute)}
+nav{display:flex;gap:22px;flex-wrap:wrap;margin:18px 0 0}
+nav a{color:var(--blue);text-decoration:none;font-weight:700}
+nav a:hover,nav a:focus-visible{text-decoration:underline;outline:none}
+section.q{margin-top:48px;padding:8px 28px 28px;border:2px solid var(--ink);border-radius:10px}
+section.q>h2{font-size:26px;margin:18px 0 18px}
+h3{font-size:20px;margin:44px 0 10px}
+h4{font-size:17px;margin:26px 0 6px}
+p{margin:8px 0}
+.problem{margin:14px 0 20px;color:#000}
+.problem p{margin:6px 0}
+.tag{font-weight:700}
+.tag.basic{color:var(--blue)}
+.tag.easy{color:var(--green)}
+.tag.warn{color:var(--amber)}
+.method{margin:26px 0 0}
+.ans{margin:22px 0 4px;font-weight:700;color:var(--red)}
+.ans+.eq{margin-top:2px}
+.note{margin:16px 0;color:var(--mute)}
+.note b{color:var(--ink)}
+figure{margin:26px 0;padding:0}
+figcaption{font-size:14px;color:var(--mute);margin-top:6px;text-align:center}
+.figrow{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:720px){.figrow{grid-template-columns:1fr}}
+svg{max-width:100%;height:auto;display:block;margin:0 auto}
+svg text{font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;font-size:13px;fill:var(--ink)}
+svg .fo{font-family:"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;font-size:14px;line-height:22px;white-space:nowrap;color:var(--ink)}
+svg .ax{stroke:var(--ink);stroke-width:1.5;fill:none}
+svg .gr{stroke:var(--mute);stroke-width:1;stroke-dasharray:4 3;fill:none}
+svg .cb{stroke:var(--blue);stroke-width:2.6;fill:none}
+svg .cg{stroke:#8a96a6;stroke-width:2;stroke-dasharray:6 4;fill:none}
+svg .cr{stroke:var(--red);stroke-width:2.4;fill:none}
+svg .cgn{stroke:var(--green);stroke-width:2.4;fill:none}
+svg .blk{fill:#eef2f7;stroke:var(--ink);stroke-width:1.6}
+svg .fillb{fill:rgba(29,95,209,.15);stroke:none}
+math{font-family:"Latin Modern Math","STIX Two Math","Cambria Math","Noto Sans Math","Times New Roman",serif;font-size:1.12em}
+.eq{margin:10px 0;padding:4px 0 4px 1.2em;overflow-x:auto}
+.eq math{text-align:left;display:block math}
+dl{margin:10px 0}
+dt{font-weight:700;margin-top:18px}
+dd{margin:2px 0 0 1.4em}
+ul{padding-left:22px;margin:6px 0}
+li{margin:4px 0}
+footer{margin-top:70px;color:var(--mute);font-size:14px}
+@media (max-width:600px){section.q{padding:4px 14px 18px}}
+@media print{nav{display:none}section.q{break-inside:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="aK" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1c2430"/></marker>
+    <marker id="aB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1d5fd1"/></marker>
+    <marker id="aR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c0392b"/></marker>
+    <marker id="aG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0c7a54"/></marker>
+  </defs>
+</svg>
+<div class="wrap">
+<header>
+  <h1>力学演習B 第1回(復習)<br>問題と解説</h1>
+  <p>演習日 2026年9月14日(月)</p>
+  <nav aria-label="問題へのリンク"><a href="#q1">Q1 用語</a><a href="#q2">Q2 投射運動</a><a href="#q3">Q3 斜面と力積</a><a href="#q4">Q4 バネと斜面</a></nav>
+</header>
+<p class="note"><span class="tag basic">【基本の解き方】</span>素直で間違えにくい解き方。　<span class="tag easy">【もっと楽な方法】</span>慣れたら使える近道・検算用。　<span class="tag warn">【前提】</span>問題文があいまいな所で置いた仮定。</p>
+<!-- ================= Q1 ================= -->
+<section class="q" id="q1">
+<h2>Q1　用語の説明</h2>
+<div class="problem"><p>次の言葉を簡潔に説明しなさい。1と2は単位も書くこと。<br>1. 速度　2. 加速度　3. 運動の第一法則　4. 運動の第二法則　5. 運動の第三法則</p></div>
+
+<dl>
+<dt>1. 速度(単位: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="normal">m</mi><mo>&#x0002F;</mo><mi mathvariant="normal">s</mi></mrow></mrow></math>)</dt>
+<dd>位置の時間変化の割合(向きと大きさをもつベクトル)。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">v</mi></mrow><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mrow><mi mathvariant="bold-italic">r</mi></mrow></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle></mrow></math>。「速さ」は速度の大きさ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x0007C;</mo><mrow><mi mathvariant="bold-italic">v</mi></mrow><mo stretchy="false">&#x0007C;</mo></mrow></math>。</dd>
+<dt>2. 加速度(単位: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="normal">m</mi><mo>&#x0002F;</mo><msup><mi mathvariant="normal">s</mi><mn>2</mn></msup></mrow></mrow></math>)</dt>
+<dd>速度の時間変化の割合(ベクトル)。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">a</mi></mrow><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mrow><mi mathvariant="bold-italic">v</mi></mrow></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mrow><mi mathvariant="bold-italic">r</mi></mrow></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac></mstyle></mrow></math></dd>
+<dt>3. 運動の第一法則(慣性の法則)</dt>
+<dd>物体に力がはたらかない(または合力が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> の)とき、静止している物体は静止を続け、動いている物体は等速直線運動を続ける。</dd>
+<dt>4. 運動の第二法則(運動方程式)</dt>
+<dd>物体の加速度は、はたらく合力に比例し、質量に反比例する。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mrow><mi mathvariant="bold-italic">a</mi></mrow><mo>&#x0003D;</mo><mrow><mi mathvariant="bold-italic">F</mi></mrow></mrow></math>(すなわち <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mrow><mi mathvariant="bold-italic">r</mi></mrow></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mrow><mi mathvariant="bold-italic">F</mi></mrow></mrow></math>)</dd>
+<dt>5. 運動の第三法則(作用反作用の法則)</dt>
+<dd>物体Aが物体Bに力を及ぼすと、BもAに、同じ大きさで逆向き、同一直線上の力を及ぼす。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="bold-italic">F</mi></mrow><mrow><mi>&#x00041;</mi><mo>&#x02192;</mo><mi>&#x00042;</mi></mrow></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mrow><mi mathvariant="bold-italic">F</mi></mrow><mrow><mi>&#x00042;</mi><mo>&#x02192;</mo><mi>&#x00041;</mi></mrow></msub></mrow></math></dd>
+</dl>
+
+<figure>
+<svg viewBox="0 0 520 150" role="img" aria-label="作用反作用の図">
+  <rect class="blk" x="90" y="55" width="90" height="50"/><text x="135" y="86" text-anchor="middle">物体 A</text>
+  <rect class="blk" x="340" y="55" width="90" height="50"/><text x="385" y="86" text-anchor="middle">物体 B</text>
+  <line class="cb" x1="180" y1="70" x2="300" y2="70" marker-end="url(#aB)"/>
+  <foreignObject x="130.0" y="42.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;color:#1d5fd1;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="bold-italic">F</mi></mrow><mrow><mi>&#x00041;</mi><mo>&#x02192;</mo><mi>&#x00042;</mi></mrow></msub></mrow></math></div></foreignObject>
+  <line class="cr" x1="340" y1="92" x2="220" y2="92" marker-end="url(#aR)"/>
+  <foreignObject x="170.0" y="102.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;color:#c0392b;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="bold-italic">F</mi></mrow><mrow><mi>&#x00042;</mi><mo>&#x02192;</mo><mi>&#x00041;</mi></mrow></msub></mrow></math></div></foreignObject>
+  <text x="260" y="142" text-anchor="middle">大きさは同じ・向きは逆・作用する相手が違う</text>
+</svg>
+<figcaption>作用反作用は「相手が違う」2つの力の組です。同じ物体にはたらく2力の「力のつりあい」とは別物です。</figcaption>
+</figure>
+<p class="note"><b>書き方のコツ:</b>3つの法則を別々に書き、キーワード(合力<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>・等速直線運動 / 合力に比例・質量に反比例 / 大きさ等しく逆向き)を入れると安全です。</p>
+</section>
+
+<!-- ================= Q2 ================= -->
+<section class="q" id="q2">
+<h2>Q2　ボールの投げ出し(空気抵抗なし → あり)</h2>
+<div class="problem">
+<p>質量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math> のボールを <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> に速さ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub></mrow></math> で、水平と角度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math> をなす向きに投げる。初期位置は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002C;</mo><mi>y</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo>&#x0002C;</mo><mi>h</mi><mo stretchy="false">&#x00029;</mo></mrow></math>、重力加速度の大きさは <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>g</mi></mrow></math>。</p>
+<p>(1) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> 方向の運動方程式を立て、時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> の速度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">v</mi></mrow><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0002C;</mo><msub><mi>v</mi><mi>y</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math> と位置 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">r</mi></mrow><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002C;</mo><mi>y</mi><mo stretchy="false">&#x00029;</mo></mrow></math> を求めよ(空気抵抗なし)。</p>
+<p>(2) 速度に比例する空気抵抗 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><mrow><mi mathvariant="bold-italic">v</mi></mrow></mrow></math>(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> は比例定数)がはたらくとして運動方程式を立て、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">v</mi></mrow><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0002C;</mo><msub><mi>v</mi><mi>y</mi></msub><mo stretchy="false">&#x00029;</mo></mrow></math> を求めよ。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub></mrow></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub></mrow></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> グラフの概形を、空気抵抗なしの場合も重ねて描け。</p>
+</div>
+
+<figure>
+<svg viewBox="0 0 480 270" role="img" aria-label="投射運動の座標と軌道">
+  <line class="ax" x1="50" y1="240" x2="465" y2="240" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="240" x2="50" y2="15" marker-end="url(#aK)"/>
+  <foreignObject x="468.0" y="246.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></div></foreignObject> <foreignObject x="26.0" y="4.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math></div></foreignObject> <foreignObject x="30.0" y="242.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi></mrow></math></div></foreignObject>
+  <path class="cg" d="M50 170 Q160 60 430 240"/>
+  <circle cx="50" cy="170" r="6" fill="#fff" stroke="#1c2430" stroke-width="1.6"/>
+  <foreignObject x="22.0" y="194.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>h</mi></mrow></math></div></foreignObject>
+  <line class="gr" x1="34" y1="170" x2="34" y2="240"/>
+  <line class="cb" x1="50" y1="170" x2="115" y2="105" marker-end="url(#aB)"/>
+  <foreignObject x="112.0" y="80.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#1d5fd1;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mrow><mi mathvariant="bold-italic">v</mi></mrow><mn>0</mn></msub></mrow></math></div></foreignObject>
+  <line class="gr" x1="50" y1="170" x2="115" y2="170"/><line class="gr" x1="115" y1="170" x2="115" y2="105"/>
+  <foreignObject x="70.0" y="176.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <foreignObject x="122.0" y="126.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <path d="M80 170 A30 30 0 0 0 71 149" class="ax" style="stroke-width:1.2"/>
+  <foreignObject x="84.0" y="148.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <line class="gr" x1="50" y1="240" x2="282" y2="158"/>
+  <circle cx="282" cy="158" r="5" fill="#1d5fd1"/>
+  <foreignObject x="190.0" y="202.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">r</mi></mrow><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002C;</mo><mi>y</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div></foreignObject>
+  <line class="cgn" x1="282" y1="158" x2="330" y2="178" marker-end="url(#aG)"/>
+  <foreignObject x="326.0" y="188.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#0c7a54;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">v</mi></mrow></mrow></math></div></foreignObject>
+  <line class="ax" x1="430" y1="50" x2="430" y2="100" marker-end="url(#aK)"/>
+  <foreignObject x="440.0" y="66.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mrow><mi mathvariant="bold-italic">g</mi></mrow></mrow></math></div></foreignObject>
+</svg>
+<figcaption><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向(加速度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>)と <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> 方向(加速度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>g</mi></mrow></math>)を別々に解けば終わりです。</figcaption>
+</figure>
+
+<h3>(1) 空気抵抗なし</h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>運動方程式 → 積分を2回</p>
+<p><b>運動方程式</b>(座標軸の向きを正とする。重力は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>y</mi></mrow></math> 向き)</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>x</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mn>0</mn><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mi>x</mi><mtext>&#x000A0;方向</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>y</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mi>y</mi><mtext>&#x000A0;方向</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<p><b>1回積分して速度</b>(初期条件: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>)</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>v</mi><mi>y</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mi>g</mi><mi>t</mi></mrow></math></div>
+<p><b>もう1回積分して位置</b>(初期条件: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mn>0</mn></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo stretchy="false">&#x00028;</mo><mn>0</mn><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>h</mi></mrow></math>)</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>x</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>t</mi><mo>&#x0002C;</mo><mspace width="2em" /><mi>y</mi><mo>&#x0003D;</mo><mi>h</mi><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>t</mi><mo>&#x02212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></div>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span>等加速度運動の公式に代入するだけ</p>
+<p>加速度が一定なら、次の公式が使えます(積分した結果そのものです)。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>v</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mrow><mtext>初</mtext></mrow></msub><mo>&#x0002B;</mo><mi>a</mi><mi>t</mi><mo>&#x0002C;</mo><mspace width="2em" /><mi>x</mi><mo>&#x0003D;</mo><msub><mi>x</mi><mrow><mtext>初</mtext></mrow></msub><mo>&#x0002B;</mo><msub><mi>v</mi><mrow><mtext>初</mtext></mrow></msub><mi>t</mi><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>a</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></math></div>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> 方向は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>g</mi></mrow></math> を入れれば一瞬で同じ答えになります。「初速・初期位置・加速度」の3つを拾うのがコツです。</p>
+
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mi mathvariant="bold-italic">v</mi></mrow><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mi>g</mi><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mrow><mi mathvariant="bold-italic">r</mi></mrow><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>t</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mi>h</mi><mo>&#x0002B;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>t</mi><mo>&#x02212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>g</mi><msup><mi>t</mi><mn>2</mn></msup><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
+
+<h3>(2) 空気抵抗 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><mrow><mi mathvariant="bold-italic">v</mi></mrow></mrow></math> あり</h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>運動方程式 → <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> と <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> を別々に解く</p>
+<p><b>運動方程式</b>(抵抗のベクトルを成分に分ける)</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mfrac><mrow><mi>d</mi><msub><mi>v</mi><mi>x</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><msub><mi>v</mi><mi>x</mi></msub></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mfrac><mrow><mi>d</mi><msub><mi>v</mi><mi>y</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><msub><mi>v</mi><mi>y</mi></msub></mrow></math></div>
+<p><b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向</b>: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math> を消して変数分離します。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mi>d</mi><msub><mi>v</mi><mi>x</mi></msub></mrow><mrow><msub><mi>v</mi><mi>x</mi></msub></mrow></mfrac><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><mi>d</mi><mi>t</mi><mtext>&#x000A0;</mtext><mo>&#x02192;</mo><mtext>&#x000A0;</mtext><mi>ln</mi><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>k</mi><mi>t</mi><mo>&#x0002B;</mo><mi>C</mi><mtext>&#x000A0;</mtext><mo>&#x02192;</mo><mtext>&#x000A0;</mtext><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup></mrow></math></div>
+<p><b><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> 方向</b>: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>u</mi><mo>&#x0003D;</mo><msub><mi>v</mi><mi>y</mi></msub><mo>&#x0002B;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math> とおくと <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>u</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mo>&#x02212;</mo><mi>k</mi><mi>u</mi></mrow></math> となり、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向と同じ形になります。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>u</mi><mo>&#x0003D;</mo><msub><mi>u</mi><mn>0</mn></msub><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>u</mi><mn>0</mn></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mi>y</mi></msub><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup><mo>&#x02212;</mo><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mrow></math></div>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span>「最終速度」を先に決めて公式に入れる</p>
+<p>抵抗ありの1階の式は、どれも次の形になります。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>v</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>v</mi><mo>&#x0221E;</mo></msub><mo>&#x0002B;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msub><mi>v</mi><mrow><mtext>初</mtext></mrow></msub><mo>&#x02212;</mo><msub><mi>v</mi><mo>&#x0221E;</mo></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup></mrow></math></div>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mo>&#x0221E;</mo></msub></mrow></math> は加速度が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> になる速度(終端速度)で、運動方程式の右辺 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><mn>0</mn></mrow></math> から出します。</p>
+<ul>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> より <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mo>&#x0221E;</mo></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>、初速 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi></mrow></math> なので <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup></mrow></math></li>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math> 方向: <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mo>&#x02212;</mo><mi>m</mi><mi>k</mi><msub><mi>v</mi><mi>y</mi></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math> より <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mo>&#x0221E;</mo></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math>、初速 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi></mrow></math> なので上の答えと一致</li>
+</ul>
+<p>微分方程式を解かずに数秒で書け、検算(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> で初速、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x02192;</mo><mo>&#x0221E;</mo></mrow></math> で終端速度)にもなります。</p>
+
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>&#x0003D;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mi>y</mi></msub><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><msup><mi>&#x00065;</mi><mrow><mo>&#x02212;</mo><mi>k</mi><mi>t</mi></mrow></msup><mo>&#x02212;</mo><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mrow></math></div>
+
+<h4>グラフの概形(点線: 空気抵抗なし、実線: 空気抵抗あり)</h4>
+<div class="figrow">
+<figure>
+<svg viewBox="0 0 400 200" role="img" aria-label="vx-tグラフ">
+  <line class="ax" x1="50" y1="160" x2="385" y2="160" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="160" x2="50" y2="18" marker-end="url(#aK)"/>
+  <foreignObject x="378.0" y="168.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math></div></foreignObject> <foreignObject x="58.0" y="8.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub></mrow></math></div></foreignObject> <foreignObject x="22.0" y="164.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi></mrow></math></div></foreignObject>
+  <line class="cg" x1="50" y1="60" x2="365" y2="60"/>
+  <polyline class="cb" points="50,60 80,78.8 110,94.1 140,106.5 170,116.5 200,124.7 230,131.4 260,136.7 290,141.1 320,144.7 350,147.5"/>
+  <foreignObject x="-174.0" y="34.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>cos</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <text x="240" y="52" style="fill:#586474">空気抵抗なし(一定)</text>
+  <text x="200" y="108" style="fill:#1d5fd1">空気抵抗あり</text>
+</svg>
+<figcaption><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub></mrow></math>: 一定値から <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> へ指数関数的に減る。負にはならない。</figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 400 200" role="img" aria-label="vy-tグラフ">
+  <line class="ax" x1="50" y1="90" x2="385" y2="90" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="195" x2="50" y2="12" marker-end="url(#aK)"/>
+  <foreignObject x="378.0" y="64.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math></div></foreignObject> <foreignObject x="58.0" y="4.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub></mrow></math></div></foreignObject> <foreignObject x="22.0" y="92.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi></mrow></math></div></foreignObject>
+  <line class="gr" x1="50" y1="150" x2="370" y2="150"/>
+  <foreignObject x="200.0" y="154.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;">終端速度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math></div></foreignObject>
+  <line class="cg" x1="50" y1="40" x2="350" y2="165"/>
+  <polyline class="cb" points="50,40 80,60.7 110,77.5 140,91.1 170,102.2 200,111.2 230,118.5 260,124.4 290,129.2 320,133.1 350,136.3"/>
+  <foreignObject x="-174.0" y="28.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <text x="112" y="62" style="fill:#1d5fd1">空気抵抗あり</text>
+  <text x="250" y="188" style="fill:#586474">空気抵抗なし(直線)</text>
+</svg>
+<figcaption><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub></mrow></math>: 抵抗なしは直線的に下がり続け、抵抗ありは <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math> に近づいて頭打ちになる。</figcaption>
+</figure>
+</div>
+<p class="note"><b>描くときのポイント:</b>どちらも <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> は同じ出発点で、終わり方(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>x</mi></msub><mo>&#x02192;</mo><mn>0</mn></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub><mo>&#x02192;</mo><mo>&#x02212;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle></mrow></math>)を必ず描きます。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mi>y</mi></msub></mrow></math> は最初、抵抗ありのほうが急に減り(重力も抵抗も下向き)、のちに直線と交わって、以降は抵抗ありのほうが上になります。グラフは <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>0</mn></msub><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0003E;</mo><mn>0</mn></mrow></math> の場合です。</p>
+</section>
+<!-- ================= Q3 ================= -->
+<section class="q" id="q3">
+<h2>Q3　斜面上の物体と力積</h2>
+<div class="problem">
+<p>摩擦のある角度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math> の斜面上に質量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math> の物体を置き、図のように時間変化する外力 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> を加える。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></math> になった時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> に動き出した。外力は<b>斜面に沿って下向きを正</b>とする。静止摩擦係数と動摩擦係数の比は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>:</mi><mn>1</mn></mrow></math>。</p>
+<p>(1) 時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>〜<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math> に <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> が物体に与える力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>F</mi></msub></mrow></math><br>
+(2) 静止摩擦係数<br>
+(3) 動いているときの摩擦力の大きさ<br>
+(4) 時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>〜<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math> に摩擦力が及ぼす力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>R</mi></msub></mrow></math>(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>R</mi></msub></mrow></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> グラフも)<br>
+(5) 時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math> での速さ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>1</mn></msub></mrow></math></p>
+</div>
+<p class="note"><span class="tag warn">【前提】</span>問題文の「水平方向」は、図(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> の矢印が斜面に沿っている)と「斜面に沿って下向きを正」という記述から、斜面に沿った方向として解きます。このとき垂直抗力は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></math> です。また、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> 以降は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math> まで下向きに動き続けている(止まらない)ものとします。</p>
+
+<div class="figrow">
+<figure>
+<svg viewBox="0 0 360 250" role="img" aria-label="物体にはたらく力">
+  <line x1="20" y1="165" x2="340" y2="165" stroke="#1c2430" stroke-width="2"/>
+  <rect class="blk" x="140" y="115" width="80" height="50"/>
+  <circle cx="180" cy="140" r="3" fill="#1c2430"/>
+  <line class="cgn" x1="180" y1="140" x2="180" y2="40" marker-end="url(#aG)"/>
+  <foreignObject x="188.0" y="36.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#0c7a54;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <line class="cr" x1="180" y1="140" x2="180" y2="225" marker-end="url(#aR)"/>
+  <foreignObject x="188.0" y="210.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#c0392b;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <line class="cb" x1="220" y1="130" x2="315" y2="130" marker-end="url(#aB)"/>
+  <foreignObject x="252.0" y="106.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#1d5fd1;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math></div></foreignObject>
+  <line class="cr" x1="220" y1="150" x2="290" y2="150" marker-end="url(#aR)"/>
+  <foreignObject x="236.0" y="166.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#c0392b;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <line x1="140" y1="140" x2="55" y2="140" stroke="#9a5b00" stroke-width="2.4" marker-end="url(#aB)" style="marker-end:none"/>
+  <path d="M55 140 l10 -5 v10 z" fill="#9a5b00"/>
+  <foreignObject x="60.0" y="112.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#9a5b00;">摩擦力 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi></mrow></math></div></foreignObject>
+  <foreignObject x="20.0" y="230.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;">右向き(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02192;</mo></mrow></math>)が斜面下向き = <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> の正の向き</div></foreignObject>
+</svg>
+<figcaption>斜面を水平に描き直した図。重力は斜面方向 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math> と垂直方向 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></math> に分解します。</figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 400 220" role="img" aria-label="F-tグラフ">
+  <line class="ax" x1="50" y1="185" x2="385" y2="185" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="185" x2="50" y2="15" marker-end="url(#aK)"/>
+  <foreignObject x="378.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math></div></foreignObject> <foreignObject x="58.0" y="6.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math></div></foreignObject> <foreignObject x="24.0" y="190.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi></mrow></math></div></foreignObject>
+  <polygon class="fillb" points="50,185 230,55 350,185"/>
+  <polyline class="cb" points="50,185 230,55 350,185"/>
+  <line class="gr" x1="50" y1="55" x2="230" y2="55"/><line class="gr" x1="230" y1="55" x2="230" y2="185"/>
+  <line class="gr" x1="50" y1="141.7" x2="110" y2="141.7"/><line class="gr" x1="110" y1="141.7" x2="110" y2="185"/>
+  <foreignObject x="-176.0" y="44.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msub><mi>F</mi><mn>0</mn></msub></mrow></math></div></foreignObject> <foreignObject x="-176.0" y="130.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow></math></div></foreignObject>
+  <foreignObject x="0.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math></div></foreignObject> <foreignObject x="120.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msub><mi>t</mi><mn>0</mn></msub></mrow></math></div></foreignObject> <foreignObject x="240.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math></div></foreignObject>
+  <foreignObject x="170.0" y="134.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#174a9e;">面積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><msub><mi>I</mi><mi>F</mi></msub></mrow></math></div></foreignObject>
+</svg>
+<figcaption>力積は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> グラフの面積です。全体が三角形になっています。</figcaption>
+</figure>
+</div>
+
+<h3>(1) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math> の力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>F</mi></msub></mrow></math></h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><mo>&#x0222B;</mo><mi>F</mi><mspace width="0.167em" /><mi>d</mi><mi>t</mi><mo>&#x0003D;</mo></mrow></math> グラフの面積</p>
+<p>グラフ全体は、底辺 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math>、高さ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><msub><mi>F</mi><mn>0</mn></msub></mrow></math> の三角形です。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>I</mi><mi>F</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x000D7;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x000D7;</mo><mn>3</mn><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub></mrow></math></div>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>I</mi><mi>F</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>3</mn><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+
+<h3>(2) 静止摩擦係数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub></mrow></math></h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>「動き出す直前」は最大静止摩擦力でつりあう</p>
+<p>動き出す直前(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi><mo>&#x0003D;</mo><msub><mi>F</mi><mn>0</mn></msub></mrow></math>)、摩擦力は上向き(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>x</mi></mrow></math> 向き)で最大値 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub><mi>N</mi></mrow></math> です。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>N</mi><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mtext>斜面に垂直</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><msub><mi>&#x003BC;</mi><mi>s</mi></msub><mi>N</mi><mo>&#x0003D;</mo><mn>0</mn><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mtext>斜面に平行</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></mfrac><mo>&#x0003D;</mo><mi>tan</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow><mrow><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></mfrac></mrow></math></div>
+<p><b>検算:</b> <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>(力なしで滑り出す限界)なら <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mi>tan</mi><mi>&#x003B8;</mi></mrow></math>。斜面の摩擦角の公式と一致します。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi></mrow></mfrac></mrow></math></div>
+
+<h3>(3) 動いているときの摩擦力の大きさ</h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003BC;</mi><mi>k</mi></msub><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math> を使う</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>f</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><msub><mi>&#x003BC;</mi><mi>k</mi></msub><mi>N</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>&#x003BC;</mi><mi>s</mi></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x000B7;</mo><mi>m</mi><mi>g</mi><mi>cos</mi><mi>&#x003B8;</mi><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+<p class="method"><span class="tag easy">【もっと楽な方法】</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BC;</mi></mrow></math> を経由しない</p>
+<p>(2)で「最大静止摩擦力 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>」がすでに出ています。動摩擦力は同じ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>N</mi></mrow></math> を使うので、係数の比 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math> がそのまま力の比になります。つまり<b>最大静止摩擦力の半分</b>です。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>f</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mtext>一定、上向き</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<h3>(4) 摩擦力の力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>R</mi></msub></mrow></math></h3>
+<p>下向きを正としているので、摩擦力(上向き)は<b>負</b>として扱います。</p>
+<p class="method"><span class="tag basic">【基本の解き方】</span>区間を分けて足す</p>
+<ul>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mi>&#x0007E;</mi><msub><mi>t</mi><mn>0</mn></msub></mrow></math>(静止中): 静止摩擦力で、つりあいから <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mi>F</mi><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></mfrac></mstyle><mi>t</mi><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> とともに増加)</li>
+<li><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub><mi>&#x0007E;</mi><msub><mi>t</mi><mn>1</mn></msub></mrow></math>(運動中): <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>f</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle></mrow></math>(一定)</li>
+</ul>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>I</mi><mi>R</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msubsup><mo>&#x0222B;</mo><mn>0</mn><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></msubsup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub></mrow><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></mfrac><mi>t</mi><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mi>d</mi><mi>t</mi><mo>&#x02212;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x0003D;</mo><mo>&#x02212;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x02212;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x0003D;</mo><mo>&#x02212;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span>摩擦力–時間グラフの面積(台形 + 長方形)</p>
+<div class="figrow">
+<figure>
+<svg viewBox="-24 0 424 220" role="img" aria-label="摩擦力の大きさ-tグラフ">
+  <line class="ax" x1="50" y1="185" x2="385" y2="185" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="185" x2="50" y2="15" marker-end="url(#aK)"/>
+  <foreignObject x="378.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math></div></foreignObject> <foreignObject x="24.0" y="190.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>O</mi></mrow></math></div></foreignObject>
+  <text x="56" y="22">摩擦力の大きさ</text>
+  <polygon class="fillb" points="50,145 110,65 110,185 50,185"/>
+  <polygon points="110,125 350,125 350,185 110,185" style="fill:rgba(12,122,84,.16)"/>
+  <polyline class="cb" points="50,145 110,65"/>
+  <line class="cb" x1="110" y1="65" x2="110" y2="125" style="stroke-dasharray:4 3"/>
+  <polyline class="cb" points="110,125 350,125"/>
+  <foreignObject x="-174.0" y="134.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <foreignObject x="116.0" y="46.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <foreignObject x="170.0" y="100.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>2</mn></mrow></math></div></foreignObject>
+  <foreignObject x="0.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math></div></foreignObject> <foreignObject x="240.0" y="192.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math></div></foreignObject>
+  <text x="62" y="172" style="fill:#174a9e">台形</text>
+  <text x="200" y="168" style="fill:#0a5e40">長方形</text>
+</svg>
+<figcaption>摩擦力の大きさ。図は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mn>2</mn><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math> の例です。</figcaption>
+</figure>
+<figure>
+<svg viewBox="0 0 400 220" role="img" aria-label="IR-tグラフ">
+  <line class="ax" x1="50" y1="40" x2="385" y2="40" marker-end="url(#aK)"/>
+  <line class="ax" x1="50" y1="15" x2="50" y2="212" marker-end="url(#aK)"/>
+  <foreignObject x="378.0" y="16.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math></div></foreignObject> <foreignObject x="58.0" y="6.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>R</mi></msub></mrow></math></div></foreignObject>
+  <path class="cb" d="M50 40 Q80 44 110 80 L350 170"/>
+  <line class="gr" x1="110" y1="40" x2="110" y2="80"/>
+  <foreignObject x="0.0" y="16.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math></div></foreignObject> <foreignObject x="240.0" y="16.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math></div></foreignObject>
+  <foreignObject x="172.0" y="68.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;">傾き <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>2</mn></mrow></math></div></foreignObject>
+  <text x="58" y="112">傾きが変化</text>
+  <text x="58" y="128">(曲線)</text>
+  <text x="200" y="200" style="fill:#586474">終点は負(上向きの力積)</text>
+</svg>
+<figcaption>累積の力積 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mi>R</mi></msub><mo stretchy="false">&#x00028;</mo><mi>t</mi><mo stretchy="false">&#x00029;</mo></mrow></math>。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mi>&#x0007E;</mi><msub><mi>t</mi><mn>0</mn></msub></mrow></math> は放物線状、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> 以降は直線です。</figcaption>
+</figure>
+</div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtext>台形</mtext><mo>&#x0003D;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x0002B;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x000D7;</mo><msub><mi>t</mi><mn>0</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtext>長方形</mtext><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x000D7;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<p>積分せずに面積を足すだけで、上と同じ結果になります。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>I</mi><mi>R</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mspace width="2em" /><mo stretchy="false">&#x00028;</mo><mtext>上向き</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<h3>(5) 時刻 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>1</mn></msub></mrow></math> での速さ <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>v</mi><mn>1</mn></msub></mrow></math></h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>力積と運動量の関係(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mi>&#x0007E;</mi><msub><mi>t</mi><mn>1</mn></msub></mrow></math> 全体)</p>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> までは静止していたので、初めの運動量は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>。斜面方向の力は、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math>・重力成分 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>・摩擦力の3つです。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>I</mi><mi>F</mi></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><msub><mi>I</mi><mi>R</mi></msub></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><msub><mi>t</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span>動き出した <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> 以降だけ考え、合力を1本にまとめる</p>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> までは静止なので、静止摩擦の区間(台形)は計算しなくて構いません。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub></mrow></math> 以降の合力(下向き正)は</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>F</mi><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><mo>&#x0002B;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo>&#x0003D;</mo><mi>F</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><msub><mi>F</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac></mrow></math></div>
+<p>力積は「<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>F</mi></mrow></math>–<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi></mrow></math> グラフの <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>t</mi><mn>0</mn></msub><mi>&#x0007E;</mi><msub><mi>t</mi><mn>1</mn></msub></mrow></math> の面積」+「一定の項 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x000D7;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math>」です。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mn>3</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002B;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><msub><mi>F</mi><mn>0</mn></msub></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub><mo>&#x0002B;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+<p>基本の解き方と同じ結果になります。2通りで一致すれば検算完了です。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>v</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>F</mi><mn>0</mn></msub><msub><mi>t</mi><mn>1</mn></msub></mrow><mrow><mi>m</mi></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mn>2</mn></mrow></mfrac><mo stretchy="false">&#x00028;</mo><msub><mi>t</mi><mn>1</mn></msub><mo>&#x02212;</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+</section>
+
+<!-- ================= Q4 ================= -->
+<section class="q" id="q4">
+<h2>Q4　滑らかな斜面上のバネ</h2>
+<div class="problem">
+<p>角度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math> の固定された滑らかな斜面に、バネ定数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math> のバネの一端を固定し、他端に質量 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math> の質点をつける。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> にバネが自然長の位置で静かに放す。自然長の位置を原点とし、斜面下向きに <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> をとる。</p>
+<p>(1) バネの伸びが <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> の位置での運動方程式を書き、エネルギー保存則を導け。</p>
+<p>(2) (1)のエネルギー保存則から、速さが最大となる位置が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>m</mi><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mstyle><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>(振動中心)であることを示せ。</p>
+</div>
+
+<figure>
+<svg viewBox="0 0 440 250" role="img" aria-label="斜面上のバネと質点">
+  <line class="ax" x1="60" y1="35" x2="60" y2="225"/>
+  <line class="ax" x1="30" y1="225" x2="420" y2="225"/>
+  <g transform="translate(60,35) rotate(30)">
+    <line x1="0" y1="0" x2="380" y2="0" stroke="#1c2430" stroke-width="2.5"/>
+    <line x1="0" y1="-26" x2="0" y2="2" stroke="#1c2430" stroke-width="5"/>
+    <path d="M0 -15 L14 -15 L22 -25 L36 -5 L50 -25 L64 -5 L78 -25 L92 -5 L106 -25 L120 -5 L128 -15 L150 -15" fill="none" stroke="#1c2430" stroke-width="1.8"/>
+    <circle cx="165" cy="-15" r="15" fill="#fff" stroke="#1c2430" stroke-width="1.8"/>
+    <foreignObject x="55.0" y="-25.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math></div></foreignObject>
+    <line class="gr" x1="165" y1="-52" x2="165" y2="12"/>
+    <circle cx="285" cy="-15" r="15" fill="none" stroke="#586474" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <line class="gr" x1="285" y1="-52" x2="285" y2="12"/>
+    <line class="cb" x1="165" y1="-44" x2="285" y2="-44" marker-end="url(#aB)"/>
+    <foreignObject x="115.0" y="-66.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;color:#1d5fd1;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></div></foreignObject>
+    <foreignObject x="55.0" y="18.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></div></foreignObject>
+    <foreignObject x="70.0" y="-58.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#586474;">バネ定数 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></div></foreignObject>
+    <line class="ax" x1="300" y1="-30" x2="372" y2="-30" marker-end="url(#aK)"/>
+    <foreignObject x="306.0" y="-52.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></div></foreignObject>
+  </g>
+  <foreignObject x="262.0" y="48.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> に放す(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>)</div></foreignObject>
+  <path class="ax" d="M329 225 A60 60 0 0 1 337 195" style="stroke-width:1.2"/>
+  <foreignObject x="296.0" y="204.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math></div></foreignObject>
+  <text x="20" y="242">床</text>
+</svg>
+<figcaption>斜面下向きに <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 軸をとり、バネが自然長の位置を <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> とします。伸びと座標が一致するので、バネの力は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>k</mi><mi>x</mi></mrow></math>(上向き)です。</figcaption>
+</figure>
+
+<h3>(1) 運動方程式とエネルギー保存則</h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>運動方程式に速度 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle></mrow></math> をかけて積分</p>
+<p><b>運動方程式</b>(斜面下向き正): 重力の斜面成分 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>(下向き)とバネの力 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>k</mi><mi>x</mi></mrow></math>(上向き)がはたらきます。垂直抗力は斜面に垂直なので <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> 方向には効かず、滑らかなので摩擦もありません。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mfrac><mrow><msup><mi>d</mi><mn>2</mn></msup><mi>x</mi></mrow><mrow><mi>d</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mi>k</mi><mi>x</mi></mrow></math></div>
+<p><b>両辺に <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle></mrow></math> をかける</b>と、それぞれ時間微分の形にまとまります。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mi>v</mi><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mo>&#x02212;</mo><mi>k</mi><mi>x</mi><mo>&#x000B7;</mo><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow></math></div>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mi>d</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup><mo stretchy="true" fence="true" form="postfix">]</mo></mrow><mo>&#x0003D;</mo><mfrac><mrow><mi>d</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" fence="true" form="prefix">[</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi><mo>&#x02212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="true" fence="true" form="postfix">]</mo></mrow></mrow></math></div>
+<p>右辺を左辺に移すと、[ ] 内が時間によらず一定と分かります。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi><mo>&#x0003D;</mo><mtext>一定</mtext></mrow></math></div>
+<p>初期条件 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>t</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> で <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> なので、一定値は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> です。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></div>
+<p class="note"><b>意味の読み取り:</b>第1項は運動エネルギー、第2項はバネの弾性エネルギー、第3項は重力の位置エネルギーです(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> だけ下ると高さが <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math> 下がるので <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mi>x</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow></math>)。この3つの合計が保存されます。</p>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle></mrow></math> ではなく <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mstyle></mrow></math> に置き換える</p>
+<p>連鎖律より <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mstyle><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>x</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mi>v</mi><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac></mstyle></mrow></math> なので、</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mi>v</mi><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mi>k</mi><mi>x</mi></mrow></math></div>
+<p>これを <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> で <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> から <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> まで積分すると(左辺は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi></mrow></math> を <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> から <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi></mrow></math> まで積分)</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>m</mi><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi><mo>&#x02212;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup></mrow></math></div>
+<p>初期条件を積分の下端に入れるので、一定値を別に求める手間が省けます。</p>
+
+<h3>(2) 速さ最大の位置</h3>
+<p class="method"><span class="tag basic">【基本の解き方】</span>平方完成して最大値を読む</p>
+<p>(1)の式を <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>v</mi><mn>2</mn></msup></mrow></math> について解きます。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>m</mi></mrow></mfrac><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007B;</mo><mn>2</mn><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi><mo>&#x02212;</mo><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup><mo stretchy="true" fence="true" form="postfix">&#x0007D;</mo></mrow></mrow></math></div>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007B;</mo><mtext>&#x000A0;</mtext><mo stretchy="false">&#x0007D;</mo></mrow></math> の中を平方完成します。</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>v</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>m</mi></mrow></mfrac><mrow><mo stretchy="true" fence="true" form="prefix">&#x0007B;</mo><mo>&#x02212;</mo><mi>k</mi><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mi>x</mi><mo>&#x02212;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mo stretchy="false">&#x00028;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><mi>k</mi></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x0007D;</mo></mrow></mrow></math></div>
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>k</mi><mo stretchy="false">&#x00028;</mo><mo>&#x022EF;</mo><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></math> は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> 以下なので、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>v</mi><mn>2</mn></msup></mrow></math> は括弧の中が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> のとき最大です。すなわち</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>m</mi><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mi>sin</mi><mi>&#x003B8;</mi><mspace width="2em" /><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mtext>このとき&#x000A0;</mtext><msub><mi>v</mi><mrow><mo>max</mo></mrow></msub><mo>&#x0003D;</mo><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><msqrt><mrow><mfrac><mrow><mi>m</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mrow></msqrt><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow></mrow></math></div>
+
+<p class="method"><span class="tag easy">【もっと楽な方法】</span>「力のつりあいの位置」で速さが最大になる</p>
+<p>速さが最大 <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x021D4;</mo></mrow></math> 加速度が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math>(<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi></mrow></math> が極大なので <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mi>d</mi><mi>v</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mstyle><mo>&#x0003D;</mo><mn>0</mn></mrow></math>) <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x021D4;</mo></mrow></math> 力のつりあい。(1)の運動方程式より</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mi>k</mi><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mn>0</mn><mtext>&#x000A0;</mtext><mo>&#x02192;</mo><mtext>&#x000A0;</mtext><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi></mrow><mrow><mi>k</mi></mrow></mfrac></mrow></math></div>
+<p>エネルギーの式から出す場合も、<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>v</mi><mn>2</mn></msup></mrow></math> を <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math> で微分して <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math> とおけば <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x02212;</mo><mn>2</mn><mi>k</mi><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> となり、同じ式が出ます。</p>
+<p class="ans">答え</p>
+<div class="eq"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>x</mi><mn>1</mn></msub><mo>&#x0003D;</mo><mfrac><mrow><mi>m</mi><mi>g</mi></mrow><mrow><mi>k</mi></mrow></mfrac><mi>sin</mi><mi>&#x003B8;</mi><mspace width="1em" /><mo stretchy="false">&#x00028;</mo><mtext>速さは&#x000A0;</mtext><mi>x</mi><mo>&#x0003D;</mo><msub><mi>x</mi><mn>1</mn></msub><mtext>&#x000A0;で最大、これが振動中心</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></div>
+
+<figure>
+<svg viewBox="0 0 400 252" role="img" aria-label="エネルギーと位置の関係">
+  <line class="ax" x1="10" y1="80" x2="380" y2="80" marker-end="url(#aK)" style="stroke-width:1"/>
+  <line class="ax" x1="40" y1="15" x2="40" y2="200" style="stroke-width:1"/>
+  <foreignObject x="366.0" y="56.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></div></foreignObject>
+  <foreignObject x="50.0" y="4.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0003D;</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac></mstyle><mi>k</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x02212;</mo><mi>m</mi><mi>g</mi><mi>sin</mi><mi>&#x003B8;</mi><mo>&#x000B7;</mo><mi>x</mi></mrow></math></div></foreignObject>
+  <path d="M20 46 Q120 234 220 46" fill="none" stroke="#1d5fd1" stroke-width="2.8"/>
+  <line x1="120" y1="137" x2="120" y2="84" stroke="#c0392b" stroke-width="2" marker-end="url(#aR)"/>
+  <text x="126" y="162" style="fill:#c0392b">運動エネルギー最大</text>
+  <line class="gr" x1="120" y1="140" x2="120" y2="212"/>
+  <line class="gr" x1="200" y1="80" x2="200" y2="212"/>
+  <foreignObject x="-186.0" y="84.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:right;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn></mrow></math></div></foreignObject>
+  <foreignObject x="10.0" y="216.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub></mrow></math></div></foreignObject> <foreignObject x="90.0" y="216.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:center;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msub><mi>x</mi><mn>1</mn></msub></mrow></math></div></foreignObject>
+  <foreignObject x="300.0" y="84.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> の線</div></foreignObject>
+  <foreignObject x="206.0" y="182.0" width="220" height="26" style="overflow:visible"><div class="fo" style="text-align:left;color:#586474;"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mn>2</mn><msub><mi>x</mi><mn>1</mn></msub></mrow></math> で <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>v</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></div></foreignObject>
+</svg>
+<figcaption>バネと重力をあわせた位置エネルギー <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo stretchy="false">&#x00029;</mo></mrow></math> の谷の底が <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mn>1</mn></msub></mrow></math> です。<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>E</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> の線との差が運動エネルギーで、谷底で最大になります。質点は <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math> と <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mo>&#x0003D;</mo><mn>2</mn><msub><mi>x</mi><mn>1</mn></msub></mrow></math> の間を往復します。</figcaption>
+</figure>
+</section>
+
+<footer>力学演習B 第1回(復習)の問題と解説。各問題の「答え」は赤字の見出しの直後に示しています。</footer>
+</div>
+</body>
+</html>
